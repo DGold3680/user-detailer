@@ -19,7 +19,7 @@ Data Fetching: Efficient API integration with caching and auto-retry using React
 
 Responsive Design: Ensures usability across different devices.
 
-Testing: Includes a testing suite for ensuring functionality and reliability.
+Testing: Includes a testing suite for ensuring functionality and reliability. Full implementation yet to be completed 
 
 Continuous Integration/Deployment (CI/CD): Automated workflows for deployment and testing.
 
