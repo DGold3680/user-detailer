@@ -12,7 +12,7 @@ const ITEMS_PER_PAGE = 3;
 
 const Index = () => {
   const { toast } = useToast();
-  const [filters, setFilters] = useState<UserFilters>({ search: "", company: "" });
+  const [filters, setFilters] = useState<UserFilters>({ search: "", company: "all" });
   const [currentPage, setCurrentPage] = useState(1);
 
   const { data: users, isLoading, error } = useQuery({
@@ -40,7 +40,7 @@ const Index = () => {
 
   const filteredUsers = users?.filter((user) => {
     const matchesSearch = user.name.toLowerCase().includes(filters.search.toLowerCase());
-    const matchesCompany = !filters.company || user.company.name === filters.company;
+    const matchesCompany = filters.company === "all" || user.company.name === filters.company;
     return matchesSearch && matchesCompany;
   });
 
@@ -71,7 +71,7 @@ const Index = () => {
             <SelectValue placeholder="Filter by company" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">All Companies</SelectItem>
+            <SelectItem value="all">All Companies</SelectItem>
             {companies.map((company) => (
               <SelectItem key={company} value={company}>
                 {company}
