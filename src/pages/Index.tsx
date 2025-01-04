@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
 import type { User, UserFilters } from "@/types/user";
+import { Helmet } from "react-helmet";
 
 const ITEMS_PER_PAGE = 3;
 
@@ -49,7 +50,19 @@ const Index = () => {
   );
 
   return (
-    <div className="container mx-auto px-4 py-8" role="main">
+    <>
+      <Helmet>
+        <title>User Directory - Browse Users</title>
+        <meta name="description" content="Browse and search through our user directory. Find users by name or company, with detailed profile information." />
+        <meta property="og:title" content="User Directory - Browse Users" />
+        <meta property="og:description" content="Browse and search through our comprehensive user directory. Find detailed user profiles and company information." />
+        <meta property="og:type" content="website" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href={window.location.href} />
+        <meta name="keywords" content="user directory, profiles, company directory, user search" />
+      </Helmet>
+
+      <div className="container mx-auto px-4 py-8" role="main">
       <h1 className="text-4xl font-bold mb-8">User Directory</h1>
       
       <div className="flex flex-col md:flex-row gap-4 mb-8">
@@ -120,7 +133,8 @@ const Index = () => {
           </PaginationContent>
         </Pagination>
       )}
-    </div>
+      </div>
+    </>
   );
 };
 
