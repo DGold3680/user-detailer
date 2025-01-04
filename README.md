@@ -1,69 +1,84 @@
-# Welcome to your Lovable project
 
-## Project info
+---
 
-**URL**: https://lovable.dev/projects/7b04f36b-ffdb-471c-a3d4-f21b00178eea
+React User Directory
 
-## How can I edit this code?
+Overview
 
-There are several ways of editing your application.
+This is a React application that fetches and displays a list of users from the JSONPlaceholder API. The application features a homepage with a list of users and a details page to view full user profiles.
 
-**Use Lovable**
+Features
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/7b04f36b-ffdb-471c-a3d4-f21b00178eea) and start prompting.
+Homepage: Displays a list of users with a "View Details" button.
 
-Changes made via Lovable will be committed automatically to this repo.
+Details Page: Provides detailed information about the selected user.
 
-**Use your preferred IDE**
+Search and Filter: Allows searching by username and filtering by company.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Data Fetching: Efficient API integration with caching and auto-retry using React Query.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Responsive Design: Ensures usability across different devices.
 
-Follow these steps:
+Testing: Includes a testing suite for ensuring functionality and reliability.
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+Continuous Integration/Deployment (CI/CD): Automated workflows for deployment and testing.
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
 
-# Step 3: Install the necessary dependencies.
-npm i
+Tech Stack
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+React: Frontend framework for building dynamic user interfaces.
 
-**Edit a file directly in GitHub**
+React Router: For seamless navigation between pages.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+React Query: For optimized data fetching and state management.
 
-**Use GitHub Codespaces**
+Tailwind CSS: For modern, responsive UI styling.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Jest/Testing Library: For unit and integration testing.
 
-## What technologies are used for this project?
 
-This project is built with .
+Installation and Setup
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+1. Clone the repository:
 
-## How can I deploy this project?
+git clone <YOUR_GIT_URL>  
+cd <PROJECT_DIRECTORY>
 
-Simply open [Lovable](https://lovable.dev/projects/7b04f36b-ffdb-471c-a3d4-f21b00178eea) and click on Share -> Publish.
 
-## I want to use a custom domain - is that possible?
+2. Install dependencies:
 
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+npm install
+
+
+3. Start the development server:
+
+npm start
+
+
+
+Testing
+
+To run tests, execute:
+
+npm test
+
+Deployment
+
+The application is deployed and accessible at: Live Demo.
+
+Highlights
+
+Optimized for performance with caching and retry mechanisms.
+
+User-friendly and responsive design tailored for various screen sizes.
+
+CI/CD pipelines to streamline testing and deployment.
+
+
+License
+
+This project is licensed under the MIT License.
+
+
+---
+
