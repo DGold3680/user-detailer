@@ -20,11 +20,18 @@ export const UserCard = ({ id, name, email, company }: UserCardProps) => {
         <CardTitle className="text-lg">{name}</CardTitle>
       </CardHeader>
       <CardContent>
-        <p className="text-sm text-muted-foreground mb-4">{email}</p>
-        <p className="text-sm text-muted-foreground mb-4">{company.name}</p>
+        <p className="text-sm text-muted-foreground mb-4">
+          <span className="sr-only">Email:</span>
+          {email}
+        </p>
+        <p className="text-sm text-muted-foreground mb-4">
+          <span className="sr-only">Company:</span>
+          {company.name}
+        </p>
         <Button 
           onClick={() => navigate(`/user/${id}`)}
           className="w-full"
+          aria-label={`View details for ${name}`}
         >
           View Details
         </Button>

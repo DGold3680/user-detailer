@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { UserCard } from "@/components/UserCard";
-import { Skeleton } from "@/components/ui/skeleton";
+import { UserCardSkeleton } from "@/components/UserCardSkeleton";
+import { ErrorPage } from "@/components/ErrorPage";
 import { useToast } from "@/components/ui/use-toast";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -26,16 +27,12 @@ const Index = () => {
     },
     retry: 3,
     retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
-    staleTime: 5 * 60 * 1000, // 5 minutes
-    gcTime: 30 * 60 * 1000, // 30 minutes (previously cacheTime)
+    staleTime: 5 * 60 * 1000,
+    gcTime: 30 * 60 * 1000,
   });
 
   if (error) {
-    toast({
-      variant: "destructive",
-      title: "Error",
-      description: "Failed to load users. Please try again later.",
-    });
+    return <ErrorPage title="Error Loading Users" description={error.message} />;
   }
 
   const filteredUsers = users?.filter((user) => {
@@ -52,7 +49,7 @@ const Index = () => {
   );
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8" role="main">
       <h1 className="text-4xl font-bold mb-8">User Directory</h1>
       
       <div className="flex flex-col md:flex-row gap-4 mb-8">
@@ -61,13 +58,14 @@ const Index = () => {
           value={filters.search}
           onChange={(e) => setFilters(prev => ({ ...prev, search: e.target.value }))}
           className="md:w-64"
+          aria-label="Search users by name"
         />
         
         <Select
           value={filters.company}
           onValueChange={(value) => setFilters(prev => ({ ...prev, company: value }))}
         >
-          <SelectTrigger className="md:w-64">
+          <SelectTrigger className="md:w-64" aria-label="Filter by company">
             <SelectValue placeholder="Filter by company" />
           </SelectTrigger>
           <SelectContent>
@@ -84,9 +82,7 @@ const Index = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
         {isLoading
           ? Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className="space-y-4">
-                <Skeleton className="h-48 w-full" />
-              </div>
+              <UserCardSkeleton key={i} />
             ))
           : paginatedUsers?.map((user) => (
               <UserCard key={user.id} {...user} />
@@ -100,6 +96,7 @@ const Index = () => {
               <PaginationPrevious 
                 onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                 className={currentPage === 1 ? "pointer-events-none opacity-50" : ""}
+                aria-disabled={currentPage === 1}
               />
             </PaginationItem>
             {Array.from({ length: totalPages }).map((_, i) => (
@@ -107,6 +104,7 @@ const Index = () => {
                 <PaginationLink
                   isActive={currentPage === i + 1}
                   onClick={() => setCurrentPage(i + 1)}
+                  aria-current={currentPage === i + 1 ? "page" : undefined}
                 >
                   {i + 1}
                 </PaginationLink>
@@ -116,6 +114,7 @@ const Index = () => {
               <PaginationNext
                 onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                 className={currentPage === totalPages ? "pointer-events-none opacity-50" : ""}
+                aria-disabled={currentPage === totalPages}
               />
             </PaginationItem>
           </PaginationContent>
